@@ -45,11 +45,12 @@ class Search implements ArgumentInterface
 
     public function coordinateArray($myCollection)
     {
-        $t = array_column($myCollection, 'coordinate');
+        $result = array_column($myCollection, 'coordinate');
+        $result = array_values(array_unique($result));
         $result = array_map(function($element){
             $element = json_decode(json_encode(json_decode($element)), true);
             return $element;
-        }, $t);
+        }, $result);
         return $result;
     }
 
